@@ -2,18 +2,24 @@
 
 set -e
 
-echo "Current directory: " $(pwd)
-
-cd $GITHUB_WORKSPACE;
+# `ACTIONS_STEP_DEBUG` is an environment variable that enables "step" debug
+# logging.
+# Following the same pattern, if the aforementioned variable is set to "true",
+# we output the commands we are executing.
+# For more information, take a look at https://git.io/JeEUu
 
 ls -la
 
-echo "Current directory: " $(pwd)
+WORKING_DIRECTORY="$1"
 
-cd $SUB_FOLDER;
+echo "CI env: $CI"
 
-echo "Current directory: " $(pwd)
+yarn cache dir
 
-echo "Running: ember test --test-port=$TEST_PORT --filter=$FILTER"
+echo "Changing current working directory to : $WORKING_DIRECTORY"
+cd $WORKING_DIRECTORY;
 
-sh -c 'ember test --test-port="$TEST_PORT" --filter="$FILTER"'
+ls -la
+echo "Running: yarn test"
+
+sh -c "yarn test"

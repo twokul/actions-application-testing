@@ -1,5 +1,12 @@
 name: 'Install Headless Chrome'
 description: 'Installs Headless Chrome'
+inputs:
+  working-directory:
+    description: 'Working Directory'
+    default: '.'
+    required: false
 runs:
   using: 'docker'
   image: 'Dockerfile'
+  args:
+    - ${{ inputs.working-directory }}

@@ -1,0 +1,5 @@
+name: 'Install Headless Chrome'
+description: 'Installs Headless Chrome'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
